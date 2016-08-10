@@ -4,9 +4,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
+
+    int quantity = 0;
+    int price = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,16 +23,14 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int quantity = 1;
-        display(quantity);
-        displayPrice(quantity*5);
+        displayPrice(quantity * price);
     }
 
     /**
      * This method is called when the '+' button is clicked.
      */
     public void increment(View view) {
-        int quantity = 3;
+        quantity++;
         display(quantity);
     }
 
@@ -35,8 +38,13 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the '-' button is clicked.
      */
     public void decrement(View view) {
-        int quantity = 1;
-        display(quantity);
+        if (quantity == 0) {
+            Toast.makeText(MainActivity.this, "Cannot go below 0 cups", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            quantity--;
+            display(quantity);
+        }
     }
 
     /**
