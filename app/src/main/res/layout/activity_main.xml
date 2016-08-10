@@ -31,5 +31,6 @@
         android:layout_height="wrap_content"
         android:text="@string/order"
         android:id="@+id/button"
-        android:paddingTop="16dp"/>
+        android:paddingTop="16dp"
+        android:onClick="submitOrder"/>
 </LinearLayout>
