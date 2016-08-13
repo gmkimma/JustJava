@@ -1,5 +1,7 @@
 package com.gregkimma.justjava;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -23,19 +25,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        whippedCream = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
-        chocolate = (CheckBox) findViewById(R.id.chocolate_checkbox);
-        name = (EditText) findViewById(R.id.name);
     }
 
     /**
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
+        whippedCream = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
+        chocolate = (CheckBox) findViewById(R.id.chocolate_checkbox);
+        name = (EditText) findViewById(R.id.name);
         if (name.getText().toString().equals("")) {
             Toast.makeText(this, "Please enter your name", Toast.LENGTH_LONG).show();
         } else {
-            displayMessage(createOrderSummary());
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+            intent.putExtra(Intent.EXTRA_TEXT, createOrderSummary());
+            intent.putExtra(Intent.EXTRA_SUBJECT, "Just Java order for " + name.getText());
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
+            }
         }
     }
 
@@ -72,14 +80,6 @@ public class MainActivity extends AppCompatActivity {
         TextView quantityTextView = (TextView) findViewById(
                 R.id.quantity_text_view);
         quantityTextView.setText("" + number);
-    }
-
-    /**
-     * This method displays the given text on the screen.
-     */
-    private void displayMessage(String message) {
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText(message);
     }
 
     /**
