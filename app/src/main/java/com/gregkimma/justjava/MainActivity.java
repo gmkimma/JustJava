@@ -11,7 +11,6 @@ import java.text.NumberFormat;
 public class MainActivity extends AppCompatActivity {
 
     int quantity = 0;
-    int price = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +22,7 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        String priceMessage = "Total: ";
-        displayMessage(priceMessage + NumberFormat.getCurrencyInstance().format(quantity * price) + "\nThank You!");
+        displayMessage(createOrderSummary(quantity));
     }
 
     /**
@@ -58,18 +56,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method displays the given price on the screen.
-     */
-    private void displayPrice(int number) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
-    }
-
-    /**
      * This method displays the given text on the screen.
      */
     private void displayMessage(String message) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(message);
+        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
+        orderSummaryTextView.setText(message);
+    }
+
+    /**
+     * Calculates the price of the order.
+     */
+    private int calculatePrice() {
+        int price = quantity * 5;
+        return price;
+    }
+
+    private String createOrderSummary(int quantity) {
+        String priceMessage = "Name: Greg\nQuantity: " + quantity + "\nTotal: ";
+        return priceMessage + NumberFormat.getCurrencyInstance().format(calculatePrice()) + "\nThank You!";
     }
 }
