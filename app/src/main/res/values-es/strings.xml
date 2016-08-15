@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Above_100_error">No se puede ir por encima de 100 tazas</string>
+    <string name="Below_1_error"> No se puede ir por debajo de 1 taza</string>
+    <string name="add_chocolate">"Añadir el chocolate ? "</string>
+    <string name="add_whipped_cream">"Añadir la crema batida ? "</string>
+    <string name="chocolate">Chocolate</string>
+    <string name="customer_name">"Nombre: "</string>
+    <string name="enter_name_error">Por favor, escriba su nombre</string>
+    <string name="just_java_order">"Just Java orden para "</string>
+    <string name="name">Nombre</string>
+    <string name="order">Orden</string>
+    <string name="order_summary">resumen del pedido</string>
+    <string name="quantity">Cantidad</string>
+    <string name="quantity_display">"Cantidad: "</string>
+    <string name="thank_you">Gracias!</string>
+    <string name="toppings">Coberturas</string>
+    <string name="total">"Total: "</string>
+    <string name="whipped_cream">Crema Batida</string>
+</resources>
